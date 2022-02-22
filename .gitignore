@@ -1,0 +1,5 @@
+# 项目排除路径
+/commons/target/
+/haoke_pojo/target/
+/hot_product/target/
+/mongodb_dao/target/
