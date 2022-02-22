@@ -1,0 +1,6 @@
+
+
+haoke:
+ banner:
+   nginx:
+     prefix: http://192.168.136.130:80/

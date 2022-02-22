@@ -1,0 +1,36 @@
+# 前端工程启动的时候，是使用cnpm run start  /npm run start
+# 前端工程启动命令 start 是一个批处理命令，启动了两个服务  npm run serve  和 mock
+# 1、Vue的前端应用，占用端口80
+# 2、Mock的静态测试服务，占用了4006端口
+
+server:
+  port: 4007
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+      routes:
+
+        - id: banner
+
+          uri: lb://haoke-banner
+          # predicates(断言) 断言，路径相匹配的进行路由
+          predicates:
+            #Path
+            - Path=/banner
+
+  main:
+    web-application-type: reactive
+  application:
+    name: haoke-gateway
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.136.130:8761/eureka/
+

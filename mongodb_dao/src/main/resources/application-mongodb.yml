@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      host: 192.168.136.130
+      port: 27017   #图片地址端口为 80
+      username: root
+      password: root
+      database: haoke
+      authentication-database: admin
