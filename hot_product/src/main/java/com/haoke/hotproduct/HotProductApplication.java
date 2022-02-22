@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 /**
- * 热销商品启动类
+   * 热销商品启动类
  * @author yue13
  */
 @SpringBootApplication
