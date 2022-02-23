@@ -4,7 +4,7 @@
 # 2、Mock的静态测试服务，占用了4006端口
 
 server:
-  port: 4007
+  port: 4006
 
 spring:
   cloud:
@@ -14,17 +14,22 @@ spring:
           enabled: false
           lower-case-service-id: true
       routes:
-
         - id: banner
-
           uri: lb://haoke-banner
           # predicates(断言) 断言，路径相匹配的进行路由
           predicates:
-            #Path
+            #Path 大小写不能错
             - Path=/banner
+        - id: hotProduct
+          uri: lb://haoke-hot-product
+          predicates:
+            - Path=/hotProduct  #大小写不能出错
+            - Query=city #请求中，必须包含city参数，参数内容不限
+
 
   main:
     web-application-type: reactive
+
   application:
     name: haoke-gateway
 

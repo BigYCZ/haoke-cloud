@@ -36,14 +36,14 @@ public class HaokeResult {
     //返回成功结果 200
     public static HaokeResult ok() {
         HaokeResult result = new HaokeResult();
-        result.setResults(200);
+        result.setStatus(200);
         return result;
     }
 
     //结果返回成功，传入data数据
     public static HaokeResult ok(Object data) {
         HaokeResult result = new HaokeResult();
-        result.setResults(200);
+        result.setStatus(200);
         result.setData(data);
         return result;
     }
@@ -51,14 +51,14 @@ public class HaokeResult {
     //查询失败 返回500
     public static HaokeResult error() {
         HaokeResult result = new HaokeResult();
-        result.setResults(500);
+        result.setStatus(500);
         return result;
     }
 
     //查询失败之后  返回500  并显示失败信息msg
     public static HaokeResult error(String msg) {
         HaokeResult result = new HaokeResult();
-        result.setResults(500);
+        result.setStatus(500);
         result.setMsg(msg);
         return result;
     }

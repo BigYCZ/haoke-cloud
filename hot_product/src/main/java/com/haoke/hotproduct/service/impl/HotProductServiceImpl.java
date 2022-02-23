@@ -31,10 +31,11 @@ public class HotProductServiceImpl implements HotProductService {
 
         //查询热销商品 需要满足4条数据
         Query query = new Query();
+        //查询条件     addCriteria:增加查询条件标准   标准是城市是哪个并且是什么城市 -- 根据city名字精准查询
+        query.addCriteria(Criteria.where("city").is(city));
+        System.out.println("查询城市：" + city);
         //根据销量做降序排列  只展示4个数据  并进行分页
         query.with(PageRequest.of(0, 4, Sort.by(Sort.Direction.DESC, "sales")));
-        //查询条件     addCriteria:增加查询条件标准   标准是城市是哪个并且是什么城市 -- 根据city名字精准查询
-        query.addCriteria(Criteria.where(city).is(city));
         List<Item> items = itemDao.getHotProduct(query);
 
         //数据不足4条时查询
@@ -42,7 +43,8 @@ public class HotProductServiceImpl implements HotProductService {
             //查询的热销商品数量不足时，需要查询其他城市的热销商品，填补到当前查询结果
             Query otherQuery = new Query();
             //查询条件，查询当前城市以外的其他城市热销商品，避免重复数据
-            query.addCriteria(Criteria.where("city").ne(city));
+            System.out.println("条件不足有其他城市" + city);
+            otherQuery.addCriteria(Criteria.where("city").ne(city));
             //排序和分页
             otherQuery.with(PageRequest.of(0, 4 - items.size(),
                     Sort.by(Sort.Direction.DESC, "sales")));
@@ -83,18 +85,17 @@ public class HotProductServiceImpl implements HotProductService {
      */
     private Item fallBackItem() {
         Item item = new Item();
-        item.setId("62148327bc021a6038d150c3");
+        item.setId("6216363d9ba8811e82099414");
         item.setCity("北京");
         item.setHouseType("150 ㎡");
         item.setImgs(
                 Arrays.asList(
-                        "group1/M00/00/00/wKiIgmIGCQGAWOcYABLGy4zg5nA524.png",
-                        "group1/M00/00/00/wKiIgmIGDBiAJwPMAAjIobLVxBY599.png",
-                        "group1/M00/00/00/wKiIgmIGDDKADXRbAAro9yfjOVw486.png"
-
+                        "group1/M00/00/00/wKiIgmITgKKAE-DYABLGy4zg5nA023_big.png",
+                        "group1/M00/00/00/wKiIgmITgOyAUmwVAAjIobLVxBY138_big.png",
+                        "group1/M00/00/00/wKiIgmITgP2AXX3bAAro9yfjOVw344_big.png"
                 )
         );
-        item.setPrice(15000L);
+        item.setPrice(12000L);
         item.setRecommendation(true);
         item.setRecoSort((byte) 9);
         item.setRentType("整租");
@@ -103,10 +104,11 @@ public class HotProductServiceImpl implements HotProductService {
         Map<String, String> info = new HashMap<>();
         info.put("years", "2010");
         info.put("type", "3室2厅");
-        info.put("level", "10/18");
+        info.put("level", "10/18层");
         info.put("style", "精装修");
         info.put("orientation", "南北通透");
         item.setInfo(info);
+
         return item;
     }
 }

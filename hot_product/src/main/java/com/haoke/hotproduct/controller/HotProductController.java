@@ -24,7 +24,7 @@ public class HotProductController {
      * @param city
      * @return
      */
-    @GetMapping("/hotproduct")
+    @GetMapping("/hotProduct")
     public HaokeResult getHotProduct(String city) {
         return hotProductService.getHotProducts(city);
     }

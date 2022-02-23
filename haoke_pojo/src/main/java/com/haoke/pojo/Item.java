@@ -119,7 +119,7 @@ public class Item {
         return houseType;
     }
 
-    public String getHouseTypeForSearch() {
+    public String getHouseType4Search() {
         // "楼层 | 几室几厅-面积 "
         return info.get("level") + "|" + info.get("type") + "-" + houseType;
     }
