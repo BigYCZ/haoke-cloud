@@ -54,7 +54,7 @@ public class HotProductServiceImpl implements HotProductService {
         }
         //查询结果items，理论上一定有4条数据，如果不足，可以使用托底数据填充
         if (items.size() < 4) {  //如果所有的热销商品数据总计不足4条，使用托底数据填补，防止页面上显示乱了
-            for (int i = items.size(); i <= 4; i++) {
+            for (int i = items.size(); i < 4; i++) {
                 items.add(fallBackItem());
             }
         }
